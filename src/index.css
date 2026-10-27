@@ -1,0 +1,164 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #0b0b0f;
+  --color-bg-2: #101015;
+  --color-surface: #15151b;
+  --color-surface-2: #1c1c23;
+  --color-nav: rgba(13, 13, 18, 0.86);
+
+  --color-line: rgba(255, 255, 255, 0.08);
+  --color-line-2: rgba(255, 255, 255, 0.14);
+  --color-line-3: rgba(255, 255, 255, 0.22);
+
+  --color-text: #f2f0ea;
+  --color-body: #b6b6c0;
+  --color-muted: #8b8b96;
+  --color-faint: #6f6f7a;
+
+  --color-cream: #F0E4C9;
+  --color-slate: #626578;
+  --color-lav: #d5d2de;
+
+  --font-display: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --radius-xl: 22px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  overflow-x: hidden;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+button, a {
+  font: inherit;
+  color: inherit;
+}
+
+button:focus-visible,
+a:focus-visible,
+[role='button']:focus-visible {
+  outline: 2px solid var(--color-cream);
+  outline-offset: 3px;
+}
+
+::selection {
+  color: var(--color-bg);
+  background: var(--color-cream);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: #26262f;
+  border: 3px solid var(--color-bg);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #34343f;
+}
+
+/* Ambient layers */
+.bg-orb {
+  position: fixed;
+  z-index: -2;
+  width: 40rem;
+  height: 40rem;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.3;
+  pointer-events: none;
+}
+.orb-a {
+  top: -16rem;
+  right: -13rem;
+  background: rgba(98, 101, 120, 0.55);
+}
+.orb-b {
+  bottom: -20rem;
+  left: -15rem;
+  background: rgba(240, 228, 201, 0.1);
+}
+.noise {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  opacity: 0.045;
+  pointer-events: none;
+  background-image: radial-gradient(#ffffff 0.7px, transparent 0.8px);
+  background-size: 26px 26px;
+}
+
+/* Animations */
+.pulseDot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: #cfd0da;
+  box-shadow: 0 0 0 0 rgba(207, 208, 218, 0.55);
+  animation: pulseDot 2.3s ease-out infinite;
+}
+
+.portraitDrift {
+  animation: portraitDrift 18s ease-in-out infinite alternate;
+}
+
+.scanSweep {
+  position: absolute;
+  z-index: 4;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(255, 255, 255, 0.07),
+    transparent
+  );
+  pointer-events: none;
+  animation: scanSweep 7s ease-in-out infinite;
+}
+
+@keyframes pulseDot {
+  0% { box-shadow: 0 0 0 0 rgba(207, 208, 218, 0.55); }
+  70% { box-shadow: 0 0 0 8px rgba(207, 208, 218, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(207, 208, 218, 0); }
+}
+
+@keyframes portraitDrift {
+  from { transform: scale(1.005); }
+  to { transform: scale(1.06); }
+}
+
+@keyframes scanSweep {
+  from { transform: translateY(-115%); }
+  to { transform: translateY(390%); }
+}
+
+@keyframes scrollMarquee {
+  to { transform: translateX(-50%); }
+}
